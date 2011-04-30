@@ -12,16 +12,12 @@ class Ec2Monitor < Scout::Plugin
     begin
       ping_avg, ping_max = parse_ping_output
       avgqu_sz, await, svctm = ebs_timing
-       ping_report = {:ping_avg_ms => ping_avg, :ping_max_ms => ping_max}
+       ping_report = {:ping_avg => ping_avg, :ping_max => ping_max}
        ebs_report = {:ebs_queue => avgqu_sz, :ebs_wait => await, :ebs_service => svctm }
-       steal_report = {:steal_perc => steal_percentage}
+       steal_report = {:steal => steal_percentage}
        combined_report = steal_report
        combined_report = combined_report.merge( ping_report ) if ping_avg && ping_max
        combined_report = combined_report.merge( ebs_report )
-#      counter(:steal, steal_percentage, :per => :percent)
-#      counter(:ebs_wait, await, :per => :millisecond)
-#      counter(:ebs_service, svctm, :per => :millisecond)
-#      counter(:ebs_queue, avgqu_sz, :per => :millisecond)
        report combined_report
     rescue StandardError => trouble
       error "#{trouble} #{trouble.backtrace}"
@@ -32,7 +28,6 @@ class Ec2Monitor < Scout::Plugin
       steal_percentage = `iostat -c | tail -2  | awk '{print $5}' | head -1`
       steal_percentage.chomp
   end
-
 
   def parse_ping_output
     return nil, nil unless ping_destination.size > 0
