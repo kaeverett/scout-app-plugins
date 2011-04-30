@@ -17,7 +17,7 @@ class Ec2Monitor < Scout::Plugin
        steal_report = {:steal => steal_percentage}
        combined_report = steal_report
        combined_report = combined_report.merge( ping_report ) if ping_avg && ping_max
-       combined_report = combined_report.merge( ebs_report )
+       combined_report = combined_report.merge( ebs_report ) if avgqu_sz && avgqu_sz.size > 0
        report combined_report
     rescue StandardError => trouble
       error "#{trouble} #{trouble.backtrace}"
