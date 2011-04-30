@@ -1,0 +1,22 @@
+metadata:
+  steal_perc:
+    units: "%"
+    delimiter: ","
+    precision: 1
+    label: EC2 steal
+  ebs_service:
+    units: "ms"
+    delimiter: ","
+    precision: 2
+    label: EBS service
+  ebs_wait:
+    units: "ms"
+    delimiter: ","
+    delimiter: ","
+    precision: 2
+    label: EBS wait
+  ebs_queue:
+    units: "ms"
+    delimiter: ","
+    precision: 2
+    label: EBS queue
