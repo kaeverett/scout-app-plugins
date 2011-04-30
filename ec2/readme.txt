@@ -4,7 +4,6 @@ This plugin allows you to monitor:
  - ping time
  - EBS performance
 
-
 Suggested thresholds:
  Not sure yet, but I will update after I have more data.  Here's where I'm starting.
  - ping times above 75ms
@@ -14,3 +13,5 @@ Suggested thresholds:
  - await and svctime above 50ms
  - average queue size above 9
 
+Actions to take:
+If steal time is consistently high, that means your instance is on a physical server that is likely over allocated.  Create a new instance to hopefully move it to another phyical node.
