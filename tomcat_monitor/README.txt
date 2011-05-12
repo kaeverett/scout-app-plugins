@@ -1,6 +1,6 @@
 monitors tomcat access log gathering: 
-	throughput requests per minute (rpm),  response time (rt),
-	top 5 requests
+	throughput requests per minute (rpm),  response time (rt), max response time
+	narrow monitor to single transaction or count all transactions
 	
 Requires specific access log format:
 pattern='%h %l %u %t %D "%r" %s %b"'
