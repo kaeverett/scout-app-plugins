@@ -8,7 +8,7 @@ class TomcatMonitor < Scout::Plugin
       notes: "| separated list of grep -v"
       default: "| grep -v HealthCheck | grep -v SessionCheck"
     type_monitor:
-      notes: slowest | most_frequent   default is just summary stats
+      notes: grep query to narrow monitor to a transaction.  i.e. "abc.jsp".   by default, stats are overall summary
     clear_cache:
       notes:  used for testing. clears last request processed
   EOS
