@@ -1,22 +1,16 @@
 metadata:
-  steal:
-    units: "%"
-    delimiter: ","
-    precision: 2
-    label: EC2 steal
-  ebs_service:
+  duration:
     units: "ms"
     delimiter: ","
     precision: 2
-    label: EBS service
-  ebs_wait:
+    label: Duration
+  max duration:
     units: "ms"
     delimiter: ","
+    precision: 2
+    label: Max duration
+  throughput:
+    units: "rpm"
     delimiter: ","
     precision: 2
-    label: EBS wait
-  ebs_queue:
-    units: 
-    delimiter: ","
-    precision: 0
-    label: EBS queue
+    label: Throughput
