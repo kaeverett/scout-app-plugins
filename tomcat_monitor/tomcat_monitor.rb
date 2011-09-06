@@ -177,10 +177,15 @@ class TomcatMonitor < Scout::Plugin
 
   # assumes format:  10.162.73.221 - - [23/Apr/2011:00:00:40 +0000] "GET /client/appraisalWorkshopPrintSignReport.jsp HTTP/1.1" 200 80557
   def parse_logs
-    pfc = print_file_cmd
-    # p pfc
-    logs = `#{pfc} #{logfile} #{filters} | awk '{print $4 " "  $6 " "$7":"$8}'`
-    p "unable to parse log" if logs.size <= 0
+    logs = []
+    begin
+      pfc = print_file_cmd
+      logs = `#{pfc} #{logfile} #{filters} | awk '{print $4 " "  $6 " "$7":"$8}'`
+      p "unable to parse log" if logs.size <= 0
+    rescue StandardError => bang
+      # swallowing errors
+      p "unable to parse log #{bang} #{bang.backtrace}"
+    end
     logs
   end
 
